@@ -1,0 +1,87 @@
+@startuml
+
+package taller_tres{
+
+    package modelo{
+        class Instrumento{
+            -codigo:String
+            -nombre:String
+            -precio:float
+            -stock:int
+            -material:String
+            +Instrumento(codigo:String, nombre:String,precio:float,stock:int,material:String)
+            +get's()
+            +set's()
+            +toCvs():String
+        }
+        class InstrumentoViento{
+          +InstrumentoViento()
+
+        }
+        class InstrumentoCuerda{
+            -cuerda:String
+            -numeroCuerdas:int
+            -tipo:String
+            +Instrumento(codigo:String, nombre:String,precio:float,stock:int,material:String,tipo:String,cuerda:String,
+                            numeroCuerdas:int)
+            +get's
+            +set's
+            +toCvsCuerda():String
+        }
+        class InstrumentoPercucion{
+            -tipo:String
+            -altura:float
+            +Instrumento(codigo:String, nombre:String,precio:float,stock:int,material:String,tipo:String,
+                    altura:float)
+            +get's
+            +set's
+            +toCvsPercucion():String
+
+        }
+    }
+    package service{
+        interface BeatRhythm{
+            +agregarInstrumentoPercucion():booleand
+            +agregarInstrumentoViento():booleand
+            +agregarInstrumentoCuerda():booleand
+            +eliminarInstrumento():booleand
+            +inventario():void
+            +cierre():void
+        }
+        class BeatRhythmImpl{
+        -lista:ListaInstrumento
+        -inicio:booleand
+        +BeatRhythmImpl()
+        +agregarInstrumentoPercucion():booleand
+        +agregarInstrumentoViento():booleand
+        +agregarInstrumentoCuerda():booleand
+        +eliminarInstrumento():booleand
+        +inventario():void
+        +cierre():void
+        }
+    }
+    package utils{
+        class Main{}
+        class ListaInstrumentos{
+        -actual:int
+        -max:int
+        -instrumentos:ListaInstrumento[]
+        +ListaInstrumentos(max:int)
+        +buscar():booleand
+        +agregar():booleand
+        +borrar():booleand
+        +buscarCodigo():Instrumento
+        +getMax():int
+        +desplegar():void
+        }
+    }
+Instrumento --|> InstrumentoViento
+Instrumento --|> InstrumentoCuerda
+Instrumento --|> InstrumentoPercucion
+Main --> BeatRhythmImpl
+BeatRhythmImpl ..|> BeatRhythm : implementa
+BeatRhythmImpl --> ListaInstrumentos
+ListaInstrumentos "1" o--> "*" Instrumento:contiene
+}
+
+@enduml

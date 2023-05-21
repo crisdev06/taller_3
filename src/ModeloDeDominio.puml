@@ -1,0 +1,11 @@
+@startuml
+
+Entity BeatTheRhythm{
+agrega instrumentos
+vende instrumentos
+inventario
+cierre
+
+}
+
+@enduml
